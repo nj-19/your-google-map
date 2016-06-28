@@ -1,0 +1,61 @@
+<!doctype html>
+<html ng-app="exampleDialog">
+<head>
+    <meta charset="utf-8">
+
+    <title>ngDialog test</title>
+
+    <link rel="icon" href="data:;base64,iVBORw0KGgo=">
+    <link rel="stylesheet" href="../css/ngDialog.css">
+    <link rel="stylesheet" href="dialog-test.css">
+    <link href='http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,400italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../css/ngDialog-theme-default.css">
+    <link rel="stylesheet" href="../css/ngDialog-theme-plain.css">
+    <link rel="stylesheet" href="../css/ngDialog-custom-width.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js"></script>
+    <script>window.angular || document.write('<script src="../bower_components/angular/angular.min.js">\x3C/script>')</script>
+    <script src="../js/ngDialog.js"></script>
+    <script src="dialog-test.js"></script>
+</head>
+
+<body ng-controller="MainCtrl">
+    <!-- Buttons and links -->
+        <a href="" ng-click="openConfirm()"><h2>Enter Latitude and Longitude</h2></a>
+        
+
+    <script type="text/ng-template" id="modalDialogId">
+        <form name="myForm">
+        <div class="ngdialog-message">
+            <h3>Get Location</h3>
+            
+            <p>Enter longitude :  <input name="confirmValue1" ng-model="confirmValue1" required /></p>
+            <span ng-show="myForm.confirmValue1.$touched && myForm.confirmValue1.$invalid">Longitude is required.</span>
+            <p>Enter latitude :   <input name="confirmValue2" ng-model="confirmValue2" required /></p>
+            <span ng-show="myForm.confirmValue2.$touched && myForm.confirmValue2.$invalid">Latitude is required.</span>
+            
+        </div>
+        <div class="ngdialog-buttons">
+            <button type="button" class="ngdialog-button ngdialog-button-primary" ng-click="getLocation([confirmValue1,confirmValue2])">Confirm</button>
+            <button type="button" class="ngdialog-button ngdialog-button-secondary" ng-click="closeThisDialog('Cancel')">Cancel</button>
+            
+        </div>
+        </form>
+    </script>
+    
+    
+    <script type="text/ng-template" id="locationDetails">
+    <p>Formatted Address : {{result}}</p>
+       <ul>
+          <li ng-repeat="x in content">
+            {{ x.formatted_address }}
+          </li>
+        </ul>
+    </script>
+    
+
+
+
+
+</body>
+</html>
+  
